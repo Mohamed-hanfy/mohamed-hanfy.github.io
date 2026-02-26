@@ -5,12 +5,12 @@
     
     
     
-    <link>http://localhost:44955/tags/</link>
+    <link>http://localhost:40255/tags/</link>
     <description>Recent content in Tags on Mohamed Hanafy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-	<atom:link href="http://localhost:44955/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:40255/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

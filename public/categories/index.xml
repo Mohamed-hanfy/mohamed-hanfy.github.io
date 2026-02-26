@@ -5,12 +5,12 @@
     
     
     
-    <link>http://localhost:44955/categories/</link>
+    <link>http://localhost:40255/categories/</link>
     <description>Recent content in Categories on Mohamed Hanafy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-	<atom:link href="http://localhost:44955/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:40255/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
