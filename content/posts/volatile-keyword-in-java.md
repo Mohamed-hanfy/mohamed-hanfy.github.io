@@ -1,10 +1,10 @@
 ---
 title: "volatile keyword in Java with Real World Example!"
+date: 2026-02-27
 draft: false
 ---
-## volatile keyword in Java with Real World Example!
 
-Last week, while working on my Grauation Project [UPPLY](https://github.com/upply-org/upply-backend), my task was to export data into an Excel file. I started building it using an HTTP polling communication pattern and executing the work in virtual threads. This raised an interesting question: how can I ensure that all threads write data to a shared memory location correctly? Before diving in, I want to make sure you have a basic understanding of the Java Memory Model (JMM).
+Last week, while working on my Graduation Project [UPPLY](https://github.com/upply-org/upply-backend), my task was to export data into an Excel file. I started building it using an HTTP polling communication pattern and executing the work in virtual threads. This raised an interesting question: how can I ensure that all threads write data to a shared memory location correctly? Before diving in, I want to make sure you have a basic understanding of the Java Memory Model (JMM).
 
 ## Java Memory Model (JMM)
 
@@ -38,7 +38,17 @@ Without synchronization, the request thread may never see what the virtual threa
 
 ## volatile
 
-`volatile` is one of the tools the JMM provides. It makes variables visible to all threads. When multiple threads work with the same variable, `volatile` forces all threads to read and write directly to shared main memory rather than a local cache, keeping data consistent and ordered.
+### What volatile Actually Does
+Marking a field volatile makes two guarantees:
+
+*Visibility*  Every read of a volatile field goes directly to main memory, and every write is flushed to main memory immediately. No thread ever reads a stale cached copy.
+
+*Ordering* (memory fence). A volatile write acts as a memory fence. All writes that happened before the volatile write are flushed along with it. Any thread that subsequently reads that volatile field is guaranteed to see not just the new value, but everything that was written before it.
+
+This second point is subtle but critical, and we'll see exactly why it matters in the real-world example below.
+
+The trade-off is performance. Bypassing CPU caches and preventing certain compiler optimizations has a cost, so volatile should be used deliberately — not sprinkled everywhere as a safety blanket.
+
 
 ```java
 boolean running = true; // not volatile
@@ -50,7 +60,7 @@ while (running) { ... }
 running = false; // Thread 1 may NEVER see this!
 ```
 
-Changing this to `volatile boolean running = true` solves the problem. The write in Thread 2 is immediately flushed to main memory, and Thread 1's read always fetches the latest value.
+Changing this to `volatile boolean running = true` solves the problem. The write in Thread 2 is immediately flushed to main memory, and Thread 1's read always fetches the latest value. but the trade off is it prevents CPU optimizations.
 
 ## Real World Example — Excel Export with Virtual Threads and HTTP Polling
 
@@ -68,7 +78,7 @@ public class ExportTask {
     private byte[] data;          // ← plain field, NOT volatile
     private String errorMessage;  // ← plain field, NOT volatile
     private final Instant createdAt;
-    private Instant expireAt;     // ← plain field, NOT volatile
+    private final Instant expireAt; 
 
     public enum Status { PENDING, COMPLETED, FAILED }
 }
@@ -108,7 +118,9 @@ private void processExport(ExportTask task, List applications) {
 
 Two things can go wrong here:
 
-**Problem  — Stale read.** The virtual thread's writes sit in its CPU core's cache and never reach main memory before the request thread polls. The request thread spins forever on `status == PENDING` even though the virtual thread has already finished.
+**Stale read.** The virtual thread's writes sit in its CPU core's cache and never reach main memory before the request thread polls. The request thread spins forever on `status == PENDING` even though the virtual thread has already finished.
+
+**Reordering.** The JIT is allowed to reorder the writes to `data` and `status`. It could write `status = COMPLETED` before the `data` array is fully written. A request thread could then see `COMPLETED`, go to fetch the data, and read a null or incomplete byte array.
 
 
 ### The Fix — `volatile` Fields
@@ -117,9 +129,9 @@ Two things can go wrong here:
 public class ExportTask {
     private volatile Status status;         
     private volatile byte[] data;           
-    private String errorMessage;   
+    private volatile String errorMessage;   
     private final Instant createdAt;       //  final is already safe
-    private Instant expireAt;
+    private final Instant expireAt;       //  final is already safe
 }
 ```
 

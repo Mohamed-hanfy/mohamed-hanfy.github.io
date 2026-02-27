@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=40255&amp;path=livereload" data-no-instant defer></script>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     
       <title>
         volatile keyword in Java with Real World Example! ::
@@ -11,14 +11,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="volatile keyword in Java with Real World Example! # Last week, while working on my GP project, my task was to export data into an Excel file. I started building it using an HTTP polling communication pattern and executing the work in virtual threads. This raised an interesting question: how can I ensure that all threads write data to a shared memory location correctly? Before diving in, I want to make sure you have a basic understanding of the Java Memory Model (JMM)."
+  content="Last week, while working on my Graduation Project UPPLY, my task was to export data into an Excel file. I started building it using an HTTP polling communication pattern and executing the work in virtual threads. This raised an interesting question: how can I ensure that all threads write data to a shared memory location correctly? Before diving in, I want to make sure you have a basic understanding of the Java Memory Model (JMM)."
 />
 <meta
   name="keywords"
   content=""
 />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="http://localhost:40255/posts/volatile-keyword-in-java/" />
+<link rel="canonical" href="http://localhost:1313/posts/volatile-keyword-in-java/" />
 
 
 
@@ -28,11 +28,11 @@
 
 <link rel="stylesheet" href="/css/style.css" />
 
-<link rel="stylesheet" href="http://localhost:40255/style.css" />
+<link rel="stylesheet" href="http://localhost:1313/style.css" />
 
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:40255/img/apple-touch-icon-144-precomposed.png" />
-<link rel="shortcut icon" href="http://localhost:40255/img/favicon.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="http://localhost:1313/img/favicon.png" />
 
 
 <link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
@@ -44,16 +44,16 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="volatile keyword in Java with Real World Example!"/>
-<meta name="twitter:description" content="volatile keyword in Java with Real World Example! # Last week, while working on my GP project, my task was to export data into an Excel file. I started building it using an HTTP polling communication pattern and executing the work in virtual threads. This raised an interesting question: how can I ensure that all threads write data to a shared memory location correctly? Before diving in, I want to make sure you have a basic understanding of the Java Memory Model (JMM)."/>
+<meta name="twitter:description" content="Last week, while working on my Graduation Project UPPLY, my task was to export data into an Excel file. I started building it using an HTTP polling communication pattern and executing the work in virtual threads. This raised an interesting question: how can I ensure that all threads write data to a shared memory location correctly? Before diving in, I want to make sure you have a basic understanding of the Java Memory Model (JMM)."/>
 
 
 
 <meta property="og:title" content="volatile keyword in Java with Real World Example!" />
-<meta property="og:description" content="volatile keyword in Java with Real World Example! # Last week, while working on my GP project, my task was to export data into an Excel file. I started building it using an HTTP polling communication pattern and executing the work in virtual threads. This raised an interesting question: how can I ensure that all threads write data to a shared memory location correctly? Before diving in, I want to make sure you have a basic understanding of the Java Memory Model (JMM)." />
+<meta property="og:description" content="Last week, while working on my Graduation Project UPPLY, my task was to export data into an Excel file. I started building it using an HTTP polling communication pattern and executing the work in virtual threads. This raised an interesting question: how can I ensure that all threads write data to a shared memory location correctly? Before diving in, I want to make sure you have a basic understanding of the Java Memory Model (JMM)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:40255/posts/volatile-keyword-in-java/" /><meta property="article:section" content="posts" />
-
-
+<meta property="og:url" content="http://localhost:1313/posts/volatile-keyword-in-java/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-02-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-02-27T00:00:00+00:00" />
 
 
 
@@ -151,6 +151,14 @@
     <h1 class="post-title">volatile keyword in Java with Real World Example!</h1>
     <div class="post-meta">
       
+        <time class="post-date">
+          2026-02-27
+        </time>
+
+        
+          
+        
+      
 
       
 
@@ -164,11 +172,7 @@
 
     <div class="post-content">
       
-      <h2 id="volatile-keyword-in-java-with-real-world-example">
-  volatile keyword in Java with Real World Example!
-  <a href="#volatile-keyword-in-java-with-real-world-example" class="h-anchor" aria-hidden="true">#</a>
-</h2>
-<p>Last week, while working on my GP project, my task was to export data into an Excel file. I started building it using an HTTP polling communication pattern and executing the work in virtual threads. This raised an interesting question: how can I ensure that all threads write data to a shared memory location correctly? Before diving in, I want to make sure you have a basic understanding of the Java Memory Model (JMM).</p>
+      <p>Last week, while working on my Graduation Project <a href="https://github.com/upply-org/upply-backend">UPPLY</a>, my task was to export data into an Excel file. I started building it using an HTTP polling communication pattern and executing the work in virtual threads. This raised an interesting question: how can I ensure that all threads write data to a shared memory location correctly? Before diving in, I want to make sure you have a basic understanding of the Java Memory Model (JMM).</p>
 <h2 id="java-memory-model-jmm">
   Java Memory Model (JMM)
   <a href="#java-memory-model-jmm" class="h-anchor" aria-hidden="true">#</a>
@@ -202,7 +206,15 @@
   volatile
   <a href="#volatile" class="h-anchor" aria-hidden="true">#</a>
 </h2>
-<p><code>volatile</code> is one of the tools the JMM provides. It makes variables visible to all threads. When multiple threads work with the same variable, <code>volatile</code> forces all threads to read and write directly to shared main memory rather than a local cache, keeping data consistent and ordered.</p>
+<h3 id="what-volatile-actually-does">
+  What volatile Actually Does
+  <a href="#what-volatile-actually-does" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Marking a field volatile makes two guarantees:</p>
+<p><em>Visibility</em>  Every read of a volatile field goes directly to main memory, and every write is flushed to main memory immediately. No thread ever reads a stale cached copy.</p>
+<p><em>Ordering</em> (memory fence). A volatile write acts as a memory fence. All writes that happened before the volatile write are flushed along with it. Any thread that subsequently reads that volatile field is guaranteed to see not just the new value, but everything that was written before it.</p>
+<p>This second point is subtle but critical, and we&rsquo;ll see exactly why it matters in the real-world example below.</p>
+<p>The trade-off is performance. Bypassing CPU caches and preventing certain compiler optimizations has a cost, so volatile should be used deliberately — not sprinkled everywhere as a safety blanket.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">boolean</span> running <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>; <span style="color:#75715e">// not volatile</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// Thread 1</span>
@@ -210,7 +222,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// Thread 2</span>
 </span></span><span style="display:flex;"><span>running <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>; <span style="color:#75715e">// Thread 1 may NEVER see this!</span>
-</span></span></code></pre></div><p>Changing this to <code>volatile boolean running = true</code> solves the problem. The write in Thread 2 is immediately flushed to main memory, and Thread 1&rsquo;s read always fetches the latest value.</p>
+</span></span></code></pre></div><p>Changing this to <code>volatile boolean running = true</code> solves the problem. The write in Thread 2 is immediately flushed to main memory, and Thread 1&rsquo;s read always fetches the latest value. but the trade off is it prevents CPU optimizations.</p>
 <h2 id="real-world-example--excel-export-with-virtual-threads-and-http-polling">
   Real World Example — Excel Export with Virtual Threads and HTTP Polling
   <a href="#real-world-example--excel-export-with-virtual-threads-and-http-polling" class="h-anchor" aria-hidden="true">#</a>
@@ -230,7 +242,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> data;          <span style="color:#75715e">// ← plain field, NOT volatile</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String errorMessage;  <span style="color:#75715e">// ← plain field, NOT volatile</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Instant createdAt;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Instant expireAt;     <span style="color:#75715e">// ← plain field, NOT volatile</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Instant expireAt; 
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> Status { PENDING, COMPLETED, FAILED }
 </span></span><span style="display:flex;"><span>}
@@ -257,29 +269,25 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> data <span style="color:#f92672">=</span> applicationExcelExportService.<span style="color:#a6e22e">generateExcel</span>(applications);
 </span></span><span style="display:flex;"><span>        task.<span style="color:#a6e22e">setData</span>(data);              <span style="color:#75715e">// plain write — stays in CPU cache</span>
-</span></span><span style="display:flex;"><span>        task.<span style="color:#a6e22e">setStatus</span>(COMPLETED);       <span style="color:#75715e">// plain write — may be reordered above setData!</span>
+</span></span><span style="display:flex;"><span>        task.<span style="color:#a6e22e">setStatus</span>(COMPLETED);   
 </span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (Exception e) {
 </span></span><span style="display:flex;"><span>        task.<span style="color:#a6e22e">setStatus</span>(FAILED);
 </span></span><span style="display:flex;"><span>        task.<span style="color:#a6e22e">setErrorMessage</span>(e.<span style="color:#a6e22e">getMessage</span>());
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Two things can go wrong here:</p>
-<p><strong>Problem 1 — Stale read.</strong> The virtual thread&rsquo;s writes sit in its CPU core&rsquo;s cache and never reach main memory before the request thread polls. The request thread spins forever on <code>status == PENDING</code> even though the virtual thread has already finished.</p>
-<p><strong>Problem 2 — Torn state.</strong> The JIT compiler is allowed to reorder the two plain writes because there is no synchronization boundary between them. The request thread can observe <code>status = COMPLETED</code> while <code>data</code> is still <code>null</code>:</p>
-<pre tabindex="0"><code>What you wrote:          What the JIT may actually execute:
-1. setData(data)     →   1. setStatus(COMPLETED)   ← floated up
-2. setStatus(COMPLETED)  2. setData(data)           ← delayed
-</code></pre><p>The request thread sees <code>COMPLETED</code>, calls <code>getData()</code>, gets <code>null</code>, and you have a silent bug — no exception at the write site, just corrupt data delivered to the client.</p>
+<p><strong>Stale read.</strong> The virtual thread&rsquo;s writes sit in its CPU core&rsquo;s cache and never reach main memory before the request thread polls. The request thread spins forever on <code>status == PENDING</code> even though the virtual thread has already finished.</p>
+<p><strong>Reordering.</strong> The JIT is allowed to reorder the writes to <code>data</code> and <code>status</code>. It could write <code>status = COMPLETED</code> before the <code>data</code> array is fully written. A request thread could then see <code>COMPLETED</code>, go to fetch the data, and read a null or incomplete byte array.</p>
 <h3 id="the-fix--volatile-fields">
   The Fix — <code>volatile</code> Fields
   <a href="#the-fix--volatile-fields" class="h-anchor" aria-hidden="true">#</a>
 </h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExportTask</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> Status status;        <span style="color:#75715e">// ✓</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> data;          <span style="color:#75715e">// ✓</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> String errorMessage;  <span style="color:#75715e">// ✓</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Instant createdAt;       <span style="color:#75715e">// ✓ final is already safe</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> Instant expireAt;     <span style="color:#75715e">// ✓</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> Status status;         
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> data;           
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> String errorMessage;   
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Instant createdAt;       <span style="color:#75715e">//  final is already safe</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Instant expireAt;       <span style="color:#75715e">//  final is already safe</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>A <code>volatile</code> write does two things:</p>
 <ol>
@@ -299,7 +307,7 @@ task.status = COMPLETED  ← volatile   ← memory fence
   <a href="#full-source" class="h-anchor" aria-hidden="true">#</a>
 </h2>
 <p><a href="https://github.com/upply-org/upply-backend/blob/main/src/main/java/com/upply/job/ExportTask.java">ExportTask.java</a></p>
-<p><a href="https://github.com/upply-org/upply-backend/blob/926b3172e6d97f63bbd00f4571edda40c/src/main/java/com/upply/job/JobService.java#L296C1-L296C90">JobService.java</a></p>
+<p><a href="https://github.com/upply-org/upply-backend/blob/926b3172e6d97f63bbb6076bbd00f4571edda40c/src/main/java/com/upply/job/JobService.java#L296">JobService.java</a></p>
 
     </div>
     
